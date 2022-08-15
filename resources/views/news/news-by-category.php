@@ -1,5 +1,5 @@
-<h1>Список новостей</h1>
-<?php foreach ($newsList as $key => $news): ?>
+<h1><?= current($newsListByCategory)['category']?></h1>
+<?php foreach ($newsListByCategory as $key => $news): ?>
     <div>
         <p><a href="/news/<?= $key ?>">Заголовок <?= $news['title'] ?></a></p>
         <p>категория <?= $news['category'] ?></p>

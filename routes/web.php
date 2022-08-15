@@ -15,9 +15,13 @@ use \App\Http\Controllers\NewsController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('index');
 });
 
 Route::get('/news', [NewsController::class, 'index']);
 
 Route::get('/news/{id}', [NewsController::class, 'show']);
+
+Route::get('/news-category', [NewsController::class, 'showCategory']);
+
+Route::get('/news/category/{category}', [NewsController::class, 'newsByCategory']);
