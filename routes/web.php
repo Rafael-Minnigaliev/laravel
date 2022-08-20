@@ -2,17 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 use \App\Http\Controllers\NewsController;
-
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+use \App\Http\Controllers\CategoryController;
+use \App\Http\Controllers\Admin\NewsController as AdminNewsController;
+use \App\Http\Controllers\Admin\CategoryController as AdminCategoryController;
 
 Route::get('/', function () {
     return view('index');
@@ -22,6 +14,10 @@ Route::get('/news', [NewsController::class, 'index']);
 
 Route::get('/news/{id}', [NewsController::class, 'show']);
 
-Route::get('/news-category', [NewsController::class, 'showCategory']);
+Route::get('/news-category', [CategoryController::class, 'index']);
 
-Route::get('/news/category/{category}', [NewsController::class, 'newsByCategory']);
+Route::get('/news/category/{category}', [CategoryController::class, 'show']);
+
+Route::get('admin/news', [AdminNewsController::class, 'index']);
+
+Route::get('admin/categories', [AdminCategoryController::class, 'index']);

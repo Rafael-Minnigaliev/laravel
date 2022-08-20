@@ -19,20 +19,4 @@ class NewsController extends Controller
             'news' => $news
         ]);
     }
-
-    public function showCategory()
-    {
-        $categories = $this->getCategories();
-        return view('news/show-category', [
-            'categories' => $categories
-        ]);
-    }
-
-    public function newsByCategory(string $category)
-    {
-        $news = $this->getNews(null, $category);
-        return view('news/news-by-category', [
-            'newsListByCategory' => $news
-        ]);
-    }
 }
