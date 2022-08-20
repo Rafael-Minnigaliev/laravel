@@ -8,7 +8,9 @@ class CategoryController extends Controller
 {
     public function index()
     {
-        return view('admin/categories/index');
+        return view('admin/categories/index', [
+            'categoriesList' => $this->getCategories()
+        ]);
     }
 
     public function create()

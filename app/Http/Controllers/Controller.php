@@ -60,23 +60,23 @@ class Controller extends BaseController
     public function getCategoryRand()
     {
         $category = [
-            'sport',
-            'politics',
-            'economy',
-            'technologies',
-            'animals'
+            1 => 'sport',
+            2 => 'politics',
+            3 => 'economy',
+            4 => 'technologies',
+            5 => 'animals'
         ];
-        return $category[rand(0, 4)];
+        return $category[rand(1, 5)];
     }
 
     public function getCategories()
     {
         return [
-            'sport',
-            'politics',
-            'economy',
-            'technologies',
-            'animals'
+            1 => 'sport',
+            2 => 'politics',
+            3 => 'economy',
+            4 => 'technologies',
+            5 => 'animals'
         ];
     }
 }
