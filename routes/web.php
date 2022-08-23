@@ -23,7 +23,6 @@ Route::get('/news/category/{category}', [CategoryController::class, 'show'])
     ->where('category', '[A-Za-z]+')
     ->name('categories.show');
 
-
 Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
     Route::get('/', AdminController::class)
         ->name('index');
