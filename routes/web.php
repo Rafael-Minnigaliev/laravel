@@ -1,37 +1,33 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use \App\Http\Controllers\NewsController;
+use \App\Http\Controllers\CategoryController;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+use App\Http\Controllers\Admin\IndexController as AdminController;
+use \App\Http\Controllers\Admin\NewsController as AdminNewsController;
+use \App\Http\Controllers\Admin\CategoryController as AdminCategoryController;
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('index');
 });
 
-Route::get('/hello/{name}', function (string $name) {
-    return "Привет $name";
+Route::get('/news', [NewsController::class, 'index'])
+    ->name('news.index');
+Route::get('/news/{id}', [NewsController::class, 'show'])
+    ->where('id', '\d+')
+    ->name('news.show');
+Route::get('/news-category', [CategoryController::class, 'index'])
+    ->name('categories.index');
+Route::get('/news/category/{category}', [CategoryController::class, 'show'])
+    ->where('category', '[A-Za-z]+')
+    ->name('categories.show');
+
+Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
+    Route::get('/', AdminController::class)
+        ->name('index');
+    Route::resource('categories', AdminCategoryController::class);
+    Route::resource('news', AdminNewsController::class);
 });
 
-Route::get('/info', function () {
-    return "Новостной проект";
-});
 
-Route::get('/news/{newsId}', function (int $newsId) {
-    $newsList = [
-        'Новость-1',
-        'Новость-2',
-        'Новость-3',
-        'Новость-4',
-        'Новость-5',
-    ];
-    return $newsList[$newsId - 1];
-});
